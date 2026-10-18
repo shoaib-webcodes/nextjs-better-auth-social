@@ -26,6 +26,19 @@ const SignInPage = () => {
 
     };
 
+
+    // Handle Google Sign-in
+
+    const handleGoogleSignIn = async () => {
+        try {
+            const { data, error } = await signIn.social({
+                provider: "google",
+            });
+        } catch (error) {
+            console.error("Error signing up with Google:", error);
+        }
+    };
+
     return (
         <div className="flex min-h-screen flex-col items-center justify-center gap-4 p-4">
             <h2>Please Sign in</h2>
@@ -45,10 +58,10 @@ const SignInPage = () => {
                     <Input placeholder="john@example.com" />
                     <FieldError />
                 </TextField>
-                <TextField 
-                className="w-full max-w-[280px]" 
-                name="password"
-                validate={(value) => {
+                <TextField
+                    className="w-full max-w-[280px]"
+                    name="password"
+                    validate={(value) => {
                         if (value.length < 8) {
                             return "Password must be at least 8 characters";
                         }
@@ -62,7 +75,7 @@ const SignInPage = () => {
                     }}
                 >
                     <Label>Password</Label>
-                    
+
                     <InputGroup>
                         <InputGroup.Input
                             className="w-full max-w-[280px]"
@@ -83,7 +96,7 @@ const SignInPage = () => {
                     <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
                     <FieldError />
                 </TextField>
-               
+
                 <div className="flex gap-2">
                     <Button type="submit">
                         {/* <Check /> */}
@@ -94,6 +107,16 @@ const SignInPage = () => {
                     </Button>
                 </div>
             </Form>
+
+            {/* Google Sign-in Button */}
+            <div className="flex justify-left mt-4">
+                <Button
+                    variant="outline"
+                    onClick={handleGoogleSignIn}
+                >
+                    Sign in with Google <i className="fab fa-google ml-2"></i>
+                </Button>
+            </div>
         </div>
     );
 };
