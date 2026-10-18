@@ -21,11 +21,11 @@ export default function Navbar() {
         <li>
             <Link href="#">Features</Link>
         </li>
-        <li>
-            <Link href="#" className="font-medium text-accent" aria-current="page">
-                Dashboard
-            </Link>
-        </li>
+         {session?.user && (
+            <li>
+                <Link href="/dashboard">Dashboard</Link>
+            </li>
+        )}
         <li>
             <Link href="#">Pricing</Link>
         </li>
@@ -39,6 +39,9 @@ export default function Navbar() {
             </> : <>
                 <Link href="/sign-in">Sign in</Link>
                 <Link href="/sign-up"><Button>Sign Up</Button></Link>
+                <li>
+          
+        </li>
             </>
         }
     </>
@@ -78,7 +81,9 @@ export default function Navbar() {
                         </svg>
                     </button>
                     <div className="flex items-center gap-3">
-                        <p className="font-bold">ACME</p>
+                      <Link href="/" className="text-lg font-bold">
+                        MyApp
+                      </Link>
                     </div>
                 </div>
                 <ul className="hidden items-center gap-4 md:flex">

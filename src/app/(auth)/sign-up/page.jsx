@@ -26,7 +26,7 @@ const SignUpPage = () => {
 
     const handleGoogleSignIn = async () => {
         try {
-            const { data, error } = await signIn.social({
+            const { data: ResData, error } = await signIn.social({
                 provider: "google",
             });
         } catch (error) {
@@ -34,6 +34,7 @@ const SignUpPage = () => {
         }
     };
 
+    
     return (
         <div className="flex min-h-screen flex-col items-center justify-center gap-4 p-4">
             <div>
@@ -111,6 +112,8 @@ const SignUpPage = () => {
                         Sign in with Google <i className="fab fa-google ml-2"></i>
                     </Button>
                 </div>
+
+                 
             </div>
         </div>
 
