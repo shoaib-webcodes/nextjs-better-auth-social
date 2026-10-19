@@ -1,6 +1,7 @@
 "use client";
 import { signUp, signIn } from "@/lib/auth-client";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Toast, toast } from "@heroui/react";
 
 
 const SignUpPage = () => {
@@ -11,15 +12,20 @@ const SignUpPage = () => {
         const data = Object.fromEntries(formData.entries());
         // Convert FormData to plain object
 
-        console.log('data from the form', data)
+
 
         const { data: resData, error } = await signUp.email({
             name: data.name,
             email: data.email,
-            password: data.password
+            password: data.password,
         });
 
-        console.log(resData, error)
+        if (error) {
+            toast.danger(error.message || "Sign up failed!");
+            return;
+        }
+
+        toast.success("Sign up successful!");
     };
 
     // Handle Google Sign-in
@@ -34,9 +40,10 @@ const SignUpPage = () => {
         }
     };
 
-    
+
     return (
         <div className="flex min-h-screen flex-col items-center justify-center gap-4 p-4">
+              <Toast.Provider placement="top end" />
             <div>
                 <h2>Please Sign up</h2>
                 <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
@@ -113,7 +120,7 @@ const SignUpPage = () => {
                     </Button>
                 </div>
 
-                 
+
             </div>
         </div>
 

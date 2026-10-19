@@ -23,6 +23,11 @@ export default function Navbar() {
         </li>
          {session?.user && (
             <li>
+                <Link href="/profile">profile</Link>
+            </li>
+        )}
+         {session?.user && (
+            <li>
                 <Link href="/dashboard">Dashboard</Link>
             </li>
         )}
