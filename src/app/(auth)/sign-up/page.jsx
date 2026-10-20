@@ -25,7 +25,7 @@ const SignUpPage = () => {
             return;
         }
 
-        toast.success("Sign up successful!");
+        toast.success("Sign up successful! Please check your email to verify your account.");
     };
 
     // Handle Google Sign-in
